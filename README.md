@@ -6,7 +6,7 @@
 
 With this plugin you can now set warps for players to use on your PMMP server!
 
-You can set a certain amount of time before the actual teleportation with a blindess effect until the player gets teleported! 
+You can set a certain amount of time before the actual teleportation occurs with a blindess effect until the player gets teleported! 
 
 # Features
 
