@@ -7,11 +7,13 @@ namespace Katsu\ShadowWarps\Commands;
 use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
 use pocketmine\player\Player;
+use pocketmine\plugin\PluginOwned;
+use pocketmine\plugin\Plugin;
 
 use Katsu\ShadowWarps\API\WarpAPI;
 use Katsu\ShadowWarps\WarpDelay;
 
-class DelWarp extends Command
+class DelWarp extends Command implements PluginOwned
 {
     public function __construct()
     {
@@ -20,6 +22,11 @@ class DelWarp extends Command
         if (isset($command[1])) $this->setDescription($command[1]);
         $this->setAliases(WarpDelay::getConfigValue("delwarp_aliases"));
         $this->setPermission("shadowwarps.cmd.delwarp");
+        $this->plugin = $plugin;
+    }
+
+    public function getOwningPlugin(): Plugin {
+        return $this->plugin;
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args)
