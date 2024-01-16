@@ -9,13 +9,15 @@ use pocketmine\command\Command;
 use pocketmine\entity\effect\EffectInstance;
 use pocketmine\entity\effect\VanillaEffects;
 use pocketmine\player\Player;
+use pocketmine\plugin\Plugin;
+use pocketmine\Plugin\PluginOwned;
 
 use Katsu\ShadowWarps\WarpDelay;
 use Katsu\ShadowWarps\Forms\WarpForms;
 use Katsu\ShadowWarps\Task\TeleportationTask;
 use Katsu\ShadowWarps\API\WarpAPI;
 
-class Warp extends Command
+class Warp extends Command implements PluginOwned
 {
     public function __construct()
     {
@@ -24,6 +26,11 @@ class Warp extends Command
         if (isset($command[1])) $this->setDescription($command[1]);
         $this->setAliases(WarpDelay::getConfigValue("warp_aliases"));
         $this->setPermission("shadowwarps.cmd.warp");
+        $this->plugin = $plugin;
+    }
+
+    public function getOwningPlugin(): Plugin {
+        return $this->plugin;
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args)
