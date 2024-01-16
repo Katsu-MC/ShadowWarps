@@ -10,7 +10,7 @@ use pocketmine\entity\effect\EffectInstance;
 use pocketmine\entity\effect\VanillaEffects;
 use pocketmine\player\Player;
 use pocketmine\plugin\Plugin;
-use pocketmine\Plugin\PluginOwned;
+use pocketmine\plugin\PluginOwned;
 
 use Katsu\ShadowWarps\WarpDelay;
 use Katsu\ShadowWarps\Forms\WarpForms;
