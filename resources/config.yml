@@ -1,12 +1,13 @@
 # Shadow Warps©
-# Creation: January 15, 2024 3:40pm
+# Creation: January 15, 2024 3:40pm PST
+# Last Update: February 22, 2024 5:42 am PST
 # Developer: Katsuu
 
 # Delay before the teleportation in seconds
 delay: 5
 
 # Message prefix
-prefix: "§f[§9Warp§f] "
+prefix: "§f[§uShadowWarps§f] "
 
 # No permission message
 no_perm: "{prefix}You don't have permission!"
@@ -25,7 +26,7 @@ warp_msg_teleport: "{prefix}You have been teleported to the warp!"
 warp_msg_list: "{prefix}here is the list of warps: {warp}"
 
 # Player has moved or canceled the teleportation
-warp_msg_cancel: "{prefix}Teleportation has been canceled!"
+warp_msg_cancel: "{prefix}Teleportation has been canceled, you moved!"
 
 # Countdown before the teleportation
 warp_msg_cooldown: "{prefix}The teleportation will be done in {time} seconds!"
@@ -38,13 +39,13 @@ delwarp_cmd: "delwarp:Delete a warp"
 delwarp_aliases: []
 
 # Message after deleting the warp
-delwarp_good: "{prefix}You have successfully removed the warp!"
+delwarp_good: "{prefix}You have successfully deleted the warp!"
 
 # Message if warp doesnt exist or misspelled
 delwarp_msg_no_exist: "{prefix}The warp does not exist!"
 
 # Message if player doesnt input a name
-delwarp_on_warp: "{prefix}You must indicate the name of a warp!"
+delwarp_on_warp: "{prefix}You must enter the name of the warp!"
 
 # Customize your command
 # Command:Command description
@@ -60,7 +61,7 @@ setwarp_good: "{prefix}You have set the warp!"
 setwarp_msg_exist: "{prefix}The warp already exists!"
 
 # Message if player doesnt input a name
-setwarp_on_warp: "{prefix}You must indicate the name of a warp!"
+setwarp_on_warp: "{prefix}You must enter the name of the warp!"
 
 # Set to "true" to enable forms to use a menu to display the list of warps
 # Set to "false" to disable forms and use chat to display the list of warps
@@ -74,5 +75,3 @@ content: "Choose the warp you want to teleport to:"
 
 # Menu Button
 button: "{warp}"
-
-# More updates to come! Hopfully ill be able to upload this to poggit!
