@@ -19,7 +19,10 @@ use Katsu\ShadowWarps\API\WarpAPI;
 
 class Warp extends Command implements PluginOwned
 {
-    public function __construct()
+
+    private $plugin;
+
+    public function __construct(WarpDelay $plugin)
     {
         $command = explode(":", WarpDelay::getConfigValue("warp_cmd"));
         parent::__construct($command[0]);
@@ -39,7 +42,7 @@ class Warp extends Command implements PluginOwned
             $command = explode(":", WarpDelay::getConfigValue("warp_cmd"));
             if ((isset($command[2])) and (WarpDelay::hasPermissionPlayer($sender, $command[2]))) return;
             if ((isset($args[0])) and (WarpAPI::existWarp($args[0]))) {
-                if (($sender->hasPermission(WarpDelay::getConfigValue("warp_perm_tp"))) or (WarpDelay::getConfigValue("delay") === null)) {
+                if (($sender->hasPermission("shadowwarps.cmd.warps"))) {
                     $sender->teleport(WarpAPI::getWarp($args[0]));
                     $sender->sendMessage(WarpDelay::getConfigReplace("warp_msg_teleport"));
                 } else {
