@@ -8,10 +8,10 @@ description: Adds a warp system with a delay.
 permissions:
   shadowwarps.cmd.setwarp:
     description: Allows the OP to set a warp.
-    default: true
+    default: op
   shadowwarps.cmd.delwarp:
     description: Allows the OP to delete a warp.
-    default: true
+    default: op
   shadowwarps.cmd.warp:
     description: Allows the player to teleport to a warp.
     default: true
