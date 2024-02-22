@@ -15,6 +15,7 @@ You can set a certain amount of time before the actual teleportation occurs with
 * Set Warp command ✅
 * Delay before teleportation ✅
 * Teleportation cancel if player disrupts the process ✅
+* FormAPI support (optional) ✅
 
 # Commands and Permissions
 
