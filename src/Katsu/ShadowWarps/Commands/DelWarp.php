@@ -15,7 +15,10 @@ use Katsu\ShadowWarps\WarpDelay;
 
 class DelWarp extends Command implements PluginOwned
 {
-    public function __construct()
+
+    private $plugin;
+
+    public function __construct(WarpDelay $plugin)
     {
         $command = explode(":", WarpDelay::getConfigValue("delwarp_cmd"));
         parent::__construct($command[0]);
