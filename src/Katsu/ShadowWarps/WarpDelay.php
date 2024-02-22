@@ -23,7 +23,7 @@ class WarpDelay extends PluginBase
 
         new WarpAPI();
 
-        $this->getServer()->getCommandMap()->registerAll("WarpsCommand", [new DelWarp(), new SetWarp(), new Warp()]);
+        $this->getServer()->getCommandMap()->registerAll("ShadowWarps", [new DelWarp($this), new SetWarp($this), new Warp($this)]);
     }
 
     public static function getInstance(): WarpDelay
