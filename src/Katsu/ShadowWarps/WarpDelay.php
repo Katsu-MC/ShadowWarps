@@ -14,39 +14,47 @@ use Katsu\ShadowWarps\Commands\SetWarp;
 
 class WarpDelay extends PluginBase
 {
-    private static WarpDelay $main;
+    private static $main;
 
     public function onEnable(): void
     {
         self::$main = $this;
         $this->saveDefaultConfig();
 
-        new WarpAPI();
+        $warpAPI = new WarpAPI();
 
-        $this->getServer()->getCommandMap()->registerAll("ShadowWarps", [new DelWarp($this), new SetWarp($this), new Warp($this)]);
+        $this->getServer()->getCommandMap()->registerAll("ShadowWarps", [
+            new DelWarp($this, $warpAPI),
+            new SetWarp($this, $warpAPI),
+            new Warp($this, $warpAPI)
+        ]);
     }
 
-    public static function getInstance(): WarpDelay
+    public static function getInstance(): self
     {
         return self::$main;
     }
 
     public function onDisable(): void
     {
-        WarpAPI::$data->save();
+        WarpAPI::getData()->save();
     }
 
     public static function getConfigReplace(string $path, array|string $replace = [], array|string $replacer = []): string
     {
-        $return = str_replace("{prefix}", self::$main->getConfig()->get("prefix"), self::$main->getConfig()->get($path));
+        $config = self::$main->getConfig();
+        $return = str_replace("{prefix}", $config->get("prefix"), $config->get($path));
         return str_replace($replace, $replacer, $return);
     }
 
     public static function hasPermissionPlayer(Player $player, string $perm): bool
     {
         if (self::$main->getServer()->isOp($player->getName())) return false;
-        if ($player->hasPermission($perm)) return false; else $player->sendMessage(self::getConfigReplace("no_perm"));
-        return true;
+        if ($player->hasPermission($perm)) return false;
+        else {
+            $player->sendMessage(self::getConfigReplace("no_perm"));
+            return true;
+        }
     }
 
     public static function getConfigValue(string $path): mixed
