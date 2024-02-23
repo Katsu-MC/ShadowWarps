@@ -37,7 +37,8 @@ class WarpDelay extends PluginBase
 
     public function onDisable(): void
     {
-        WarpAPI::getData()->save();
+        $warpAPI = new WarpAPI();
+        $warpAPI->save();
     }
 
     public static function getConfigReplace(string $path, array|string $replace = [], array|string $replacer = []): string
