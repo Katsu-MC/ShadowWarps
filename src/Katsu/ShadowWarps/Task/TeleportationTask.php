@@ -28,7 +28,7 @@ class TeleportationTask extends Task
         WarpDelay::getInstance()->getScheduler()->scheduleDelayedRepeatingTask($this, 20, 20);
     }
 
-    public function onRun(int $currentTick): void
+    public function onRun(): void
     {
         $player = $this->player;
         if (!$player->isOnline()) {
