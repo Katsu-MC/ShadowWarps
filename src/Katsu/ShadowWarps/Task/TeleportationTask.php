@@ -50,7 +50,8 @@ class TeleportationTask extends Task
 
         if ($this->timer === 0) {
             $player->getEffects()->remove(VanillaEffects::BLINDNESS());
-            $player->teleport(WarpAPI::getWarp($this->warp));
+            $warpAPI = new WarpAPI();
+            $player->teleport($warpAPI->getWarp($this->warp));
             $player->sendTip(WarpDelay::getConfigReplace("warp_msg_teleport"));
             $this->getHandler()->cancel();
             return;
