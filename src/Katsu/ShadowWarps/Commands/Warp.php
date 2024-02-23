@@ -53,7 +53,8 @@ class Warp extends Command implements PluginOwned
                 }
             } else {
                 if (WarpDelay::getConfigValue("form")) {
-                    $sender->sendForm(WarpForms::warpForm());
+                    $warpForms = new WarpForms($this->warpAPI);
+                    $sender->sendForm($warpForms->warpForm());
                     return;
                 }
 
