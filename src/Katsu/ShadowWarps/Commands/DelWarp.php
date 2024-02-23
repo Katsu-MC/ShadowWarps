@@ -15,10 +15,10 @@ use Katsu\ShadowWarps\WarpDelay;
 
 class DelWarp extends Command implements PluginOwned
 {
-
     private $plugin;
+    private $warpAPI;
 
-    public function __construct(WarpDelay $plugin)
+    public function __construct(WarpDelay $plugin, WarpAPI $warpAPI)
     {
         $command = explode(":", WarpDelay::getConfigValue("delwarp_cmd"));
         parent::__construct($command[0]);
@@ -26,9 +26,11 @@ class DelWarp extends Command implements PluginOwned
         $this->setAliases(WarpDelay::getConfigValue("delwarp_aliases"));
         $this->setPermission("shadowwarps.cmd.delwarp");
         $this->plugin = $plugin;
+        $this->warpAPI = $warpAPI;
     }
 
-    public function getOwningPlugin(): Plugin {
+    public function getOwningPlugin(): Plugin
+    {
         return $this->plugin;
     }
 
@@ -38,8 +40,8 @@ class DelWarp extends Command implements PluginOwned
             $command = explode(":", WarpDelay::getConfigValue("delwarp_cmd"));
             if ((isset($command[2])) and (WarpDelay::hasPermissionPlayer($sender, $command[2]))) return;
             if (isset($args[0])) {
-                if (WarpAPI::existWarp($args[0])) {
-                    WarpAPI::delWarp($args[0]);
+                if ($this->warpAPI->existWarp($args[0])) {
+                    $this->warpAPI->delWarp($args[0]);
                     $sender->sendMessage(WarpDelay::getConfigReplace("delwarp_good"));
                 } else $sender->sendMessage(WarpDelay::getConfigReplace("delwarp_msg_no_exist"));
             } else $sender->sendMessage(WarpDelay::getConfigReplace("delwarp_on_warp"));
