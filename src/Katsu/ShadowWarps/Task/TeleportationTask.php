@@ -14,21 +14,21 @@ use Katsu\ShadowWarps\API\WarpAPI;
 
 class TeleportationTask extends Task
 {
-    private Position $start_position;
-    private Player $player;
-    private string $warp;
-    private int $timer;
+    private $startPosition;
+    private $player;
+    private $warp;
+    private $timer;
 
     public function __construct(Player $player, string $warp)
     {
         $this->warp = $warp;
         $this->player = $player;
-        $this->start_position = $player->getPosition();
+        $this->startPosition = $player->getPosition();
         $this->timer = WarpDelay::getConfigValue("delay");
         WarpDelay::getInstance()->getScheduler()->scheduleDelayedRepeatingTask($this, 20, 20);
     }
 
-    public function onRun(): void
+    public function onRun(int $currentTick): void
     {
         $player = $this->player;
         if (!$player->isOnline()) {
@@ -36,9 +36,9 @@ class TeleportationTask extends Task
             return;
         }
 
-        if ($player->getPosition()->getFloorX() === $this->start_position->getFloorX() and
-            $player->getPosition()->getFloorY() === $this->start_position->getFloorY() and
-            $player->getPosition()->getFloorZ() === $this->start_position->getFloorZ()) {
+        if ($player->getPosition()->getFloorX() === $this->startPosition->getFloorX() &&
+            $player->getPosition()->getFloorY() === $this->startPosition->getFloorY() &&
+            $player->getPosition()->getFloorZ() === $this->startPosition->getFloorZ()) {
             $player->sendTip(WarpDelay::getConfigReplace("warp_msg_cooldown", ["{time}"], [$this->timer]));
             $this->timer--;
         } else {
